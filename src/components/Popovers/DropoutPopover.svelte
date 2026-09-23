@@ -11,7 +11,7 @@
 
 <CommonPopover
 	className="dropout-popover"
-	title="Dropout"
+	title="드롭아웃"
 	{offset}
 	{triggeredBy}
 	{trigger}
@@ -19,7 +19,7 @@
 	goTo="article-dropout"
 >
 	<div class="dropout-content">
-		Disables randomly selected neurons. Used only during training.
+		무작위로 선택한 뉴런을 비활성화합니다. 학습할 때만 사용됩니다.
 	</div></CommonPopover
 >
 

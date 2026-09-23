@@ -211,7 +211,7 @@
 		data-click="prob-step-title"
 	>
 		<div class="title-text flex w-max items-center gap-1">
-			Probabilities
+			확률
 			<ZoomInOutline></ZoomInOutline>
 		</div>
 	</div>
@@ -235,7 +235,7 @@
 					>
 						<span>{item.token.trim() === '' ? '\u00A0' : item.token}</span>
 						<Tooltip class="softmax-tooltip" type="light">
-							Token ID: <span class="number">{tokenIds[idx]}</span>
+							토큰 ID: <span class="number">{tokenIds[idx]}</span>
 						</Tooltip>
 					</div>
 				{/each}
@@ -247,7 +247,7 @@
 			{#if isSoftmaxExpanded}
 				<div class="softmax-subtitle softmax-detail flex text-center text-xs opacity-0">
 					<div class="title-box token-string !justify-end">
-						<div class="title-text">Tokens</div>
+						<div class="title-text">토큰</div>
 					</div>
 					<div class="title-box logits">
 						<div
@@ -255,12 +255,12 @@
 							on:click={onClickLogits}
 							data-click="prob-expansion-logit-btn"
 						>
-							Logits <EyeOutline class="icon text-gray-400" size="sm" />
+							로짓 <EyeOutline class="icon text-gray-400" size="sm" />
 						</div>
 					</div>
 					<div class="title-box scaled">
 						<TextbookTooltip id="temperature"
-							><div class="title-text">Scaled logits</div></TextbookTooltip
+							><div class="title-text">스케일된 로짓</div></TextbookTooltip
 						>
 					</div>
 					<div class="title-box sampling">
@@ -363,7 +363,7 @@
 											<span class="number" class:strike={cutoffIndex < idx}>{prob.toFixed(2)}</span>
 											{#if cutoffIndex === idx}
 												<span class="cutoff-label"
-													>sum={cumulativeProbabilities[idx]?.toFixed(2)}</span
+													>합={cumulativeProbabilities[idx]?.toFixed(2)}</span
 												>
 											{/if}
 										</div>

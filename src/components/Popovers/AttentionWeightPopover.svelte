@@ -257,13 +257,13 @@
 
 <WeightPopoverCard
 	id="attention"
-	title={`Attention Head ${$attentionHeadIdx + 1} Out`}
+	title={`어텐션 헤드 ${$attentionHeadIdx + 1} 출력`}
 	bind:isAnimationActive
 	{timeline}
 >
 	<div class="attention-weight-poover weight-popover-content flex items-center justify-start">
 		<div class="matrix flex flex-col items-center">
-			<div class="title">Attention</div>
+			<div class="title">어텐션</div>
 			<Matrix
 				className="attention-matrix"
 				data={maskArray(softmaxed)}
@@ -315,7 +315,7 @@
 			</div>
 		</div>
 		<div class="matrix flex flex-col items-center">
-			<div class="title">Out</div>
+			<div class="title">출력</div>
 			<div class="flex">
 				<Matrix
 					className="head-out-matrix"

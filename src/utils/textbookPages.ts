@@ -35,20 +35,20 @@ const { drawLine, removeLine } = drawResidualLine();
 export const textPages: TextbookPage[] = [
 	{
 		id: 'what-is-transformer',
-		title: 'What is Transformer?',
-		content: `<p><strong>Transformer</strong> is the core architecture behind modern AI, powering models like ChatGPT and Gemini. Introduced in 2017, it revolutionized how AI processes information. The same architecture is used for training on massive datasets and for inference to generate outputs. Here we use GPT-2 (small), simpler than newer ones but perfect for learning the fundamentals.</p>
+		title: '트랜스포머란?',
+		content: `<p><strong>트랜스포머(Transformer)</strong>는 ChatGPT, Gemini 같은 모델을 구동하는 현대 AI의 핵심 아키텍처입니다. 2017년에 처음 소개되어 AI가 정보를 처리하는 방식을 혁신했습니다. 같은 아키텍처가 방대한 데이터로 학습(training)할 때와 결과를 생성하는 추론(inference)할 때 모두 쓰입니다. 여기서는 최신 모델보다 단순하지만 기본 원리를 배우기에 딱 알맞은 GPT-2 (small)를 사용합니다.</p>
 `,
 		on: () => {},
 		out: () => {}
 	},
 	{
 		id: 'how-transformers-work',
-		title: 'How Transformers Work?',
-		content: `<p>Transformers aren't magic—they build text step by step by asking:</p>
+		title: '트랜스포머는 어떻게 동작할까?',
+		content: `<p>트랜스포머는 마법이 아닙니다. 다음 질문을 반복하며 텍스트를 한 단계씩 만들어 갑니다.</p>
 	<blockquote class="question">
-		"What is the most probable next word that will follow this input?"
+		"이 입력 다음에 올 가능성이 가장 높은 단어는 무엇일까?"
 	</blockquote>
-	<p>Here we explore how a trained model generates text. Write your own text or use an example, then click <strong>Generate</strong> to see it in action. If the model isn’t ready yet, try another <strong>Example</strong>.</p>`,
+	<p>여기서는 학습된 모델이 텍스트를 생성하는 과정을 살펴봅니다. 직접 텍스트를 입력하거나 예시를 고른 다음 <strong>생성</strong> 버튼을 눌러 동작을 확인해 보세요. 모델이 아직 준비되지 않았다면 다른 <strong>예시</strong>를 선택해 보세요. (GPT-2는 영어로 학습된 모델이라 입력은 영어로 해야 합니다.)</p>`,
 		on: () => {
 			highlightElements(['.input-form']);
 			if (get(isFetchingModel)) {
@@ -77,9 +77,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'transformer-architecture',
-		title: 'Transformer Architecture',
+		title: '트랜스포머 아키텍처',
 		content:
-			'<p>Transformer has three main parts:</p><div class="numbered-list"><div class="numbered-item"><span class="number-circle">1</span><div class="item-content"><strong>Embeddings</strong> turn text into numbers.</div></div><div class="numbered-item"><span class="number-circle">2</span><div class="item-content"><strong>Transformer blocks</strong> mix information with Self-Attention and refine it with an MLP.</div></div><div class="numbered-item"><span class="number-circle">3</span><div class="item-content"><strong>Probabilities</strong> determine the likelihood of each next token.</div></div></div>',
+			'<p>트랜스포머는 세 가지 주요 부분으로 이루어져 있습니다.</p><div class="numbered-list"><div class="numbered-item"><span class="number-circle">1</span><div class="item-content"><strong>임베딩</strong>은 텍스트를 숫자로 바꿉니다.</div></div><div class="numbered-item"><span class="number-circle">2</span><div class="item-content"><strong>트랜스포머 블록</strong>은 셀프 어텐션으로 정보를 섞고 MLP로 정보를 다듬습니다.</div></div><div class="numbered-item"><span class="number-circle">3</span><div class="item-content"><strong>확률</strong>은 각 토큰이 다음에 올 가능성을 결정합니다.</div></div></div>',
 		on: () => {
 			const selectors = [
 				'.step.embedding',
@@ -103,8 +103,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'embedding',
-		title: 'Embedding',
-		content: `<p>Before a Transformer can use text, it first breaks it into small units and represents each as a list of numbers (vector). This process is called <strong>embedding</strong>, and the term can refer to both the process and the resulting vector.</p><p>In this tool, each vector appears as a rectangle, and hovering over it shows its size.</p>`,
+		title: '임베딩',
+		content: `<p>트랜스포머가 텍스트를 사용하려면 먼저 텍스트를 작은 단위로 쪼개고, 각 단위를 숫자 목록(벡터)으로 표현해야 합니다. 이 과정을 <strong>임베딩(embedding)</strong>이라고 하며, 이 용어는 과정 자체와 그 결과로 나온 벡터를 모두 가리킬 수 있습니다.</p><p>이 도구에서 각 벡터는 직사각형으로 표시되며, 마우스를 올리면 크기를 확인할 수 있습니다.</p>`,
 		on: () => {
 			highlightElements(['.step.embedding .title']);
 		},
@@ -124,8 +124,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'token-embedding',
-		title: 'Token Embedding',
-		content: `<p><strong>Tokenization</strong> splits input text into tokens—small units like words or parts of words. GPT-2 (small) has 50,257 token vocabulary, each with a unique ID.</p><p>In the <strong>token embedding</strong> step, every token is matched to a 768-number vector from a large lookup table. These vectors are learned during training to best represent each token’s meaning.</p>`,
+		title: '토큰 임베딩',
+		content: `<p><strong>토큰화(tokenization)</strong>는 입력 텍스트를 단어나 단어의 일부 같은 작은 단위인 토큰으로 나눕니다. GPT-2 (small)의 어휘에는 50,257개의 토큰이 있고, 각 토큰은 고유한 ID를 갖습니다.</p><p><strong>토큰 임베딩</strong> 단계에서는 모든 토큰을 큰 조회 테이블(lookup table)에서 768개의 숫자로 된 벡터에 대응시킵니다. 이 벡터들은 각 토큰의 의미를 가장 잘 나타내도록 학습 과정에서 학습됩니다.</p>`,
 		on: function () {
 			const selectors = [
 				'.token-column .column.token-string',
@@ -155,8 +155,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'positional-encoding',
-		title: 'Positional Encoding',
-		content: `<p>Word order matters in language. <strong>Positional encoding</strong> gives each token information about its place in the sequence.</p><p>GPT-2 does this by adding a learned positional embedding to the token's embedding, but newer models may use other methods, like RoPE, which encodes position by rotating certain vectors. All aim to help the model understand order in text.</p>`,
+		title: '위치 인코딩',
+		content: `<p>언어에서는 단어의 순서가 중요합니다. <strong>위치 인코딩(positional encoding)</strong>은 각 토큰에 시퀀스 안에서의 위치 정보를 제공합니다.</p><p>GPT-2는 학습된 위치 임베딩을 토큰 임베딩에 더하는 방식을 쓰지만, 최신 모델은 특정 벡터를 회전시켜 위치를 인코딩하는 RoPE 같은 다른 방법을 쓰기도 합니다. 어떤 방법이든 목표는 모델이 텍스트의 순서를 이해하도록 돕는 것입니다.</p>`,
 		on: function () {
 			const selectors = [
 				'.token-column .column.position-embedding',
@@ -186,8 +186,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'blocks',
-		title: 'Repetitive Transformer Blocks',
-		content: `<p>A <strong>Transformer block</strong> is the main unit of processing in the model. It has two parts:</p><ul><li><strong>Multi-head self-attention</strong> – lets tokens share information</li><li><strong>MLP</strong> – refines each token's details</li></ul><p>Models stack many blocks so token representations become richer as they pass through. GPT-2 (small) has 12 of them.</p>`,
+		title: '반복되는 트랜스포머 블록',
+		content: `<p><strong>트랜스포머 블록</strong>은 모델의 주요 처리 단위이며, 두 부분으로 이루어져 있습니다.</p><ul><li><strong>멀티 헤드 셀프 어텐션</strong> – 토큰끼리 정보를 공유하게 합니다</li><li><strong>MLP</strong> – 각 토큰의 세부 정보를 다듬습니다</li></ul><p>모델은 블록을 여러 개 쌓아서, 토큰 표현이 블록을 통과할수록 더 풍부해지도록 합니다. GPT-2 (small)에는 블록이 12개 있습니다.</p>`,
 		on: function () {
 			this.timeoutId = setTimeout(
 				() => {
@@ -230,9 +230,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'self-attention',
-		title: 'Multi-Head Self Attention',
+		title: '멀티 헤드 셀프 어텐션',
 		content:
-			'<p><strong>Self-attention</strong> lets the model decide which parts of the input are most relevant to each token. This helps it capture meaning and relationships, even between far-apart words.</p><p>In <strong>multi-head</strong> form, the model runs several attention processes in parallel, each focusing on different patterns in the text.</p>',
+			'<p><strong>셀프 어텐션(self-attention)</strong>은 모델이 각 토큰에 대해 입력의 어느 부분이 가장 관련 있는지 판단하게 해 줍니다. 덕분에 멀리 떨어진 단어 사이에서도 의미와 관계를 포착할 수 있습니다.</p><p><strong>멀티 헤드(multi-head)</strong> 방식에서는 여러 어텐션 과정을 병렬로 실행하며, 각각이 텍스트의 서로 다른 패턴에 집중합니다.</p>',
 		on: () => {
 			highlightElements(['.step.attention']);
 		},
@@ -242,16 +242,16 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'qkv',
-		title: 'Query, Key, Value',
+		title: '쿼리, 키, 밸류',
 		content: `
-	<p>To perform self-attention, each token's embedding is transformed into 
-  <span class="highlight">three new embeddings</span>—
-  <span class="blue">Query</span>,  
-  <span class="red">Key</span>, and  
-  <span class="green">Value</span>.
-  This transformation is done by applying different weights and biases to each token embedding. These parameters (weights and biases), are optimized through training.</p>
+	<p>셀프 어텐션을 수행하기 위해 각 토큰의 임베딩은
+  <span class="highlight">세 개의 새로운 임베딩</span>,
+  <span class="blue">쿼리(Query)</span>,
+  <span class="red">키(Key)</span>,
+  <span class="green">밸류(Value)</span>로 변환됩니다.
+  이 변환은 각 토큰 임베딩에 서로 다른 가중치와 편향을 적용해서 이루어집니다. 이 파라미터(가중치와 편향)는 학습을 통해 최적화됩니다.</p>
 
-<p>Once created, <span class="blue">Queries</span> compare with <span class="red">Keys</span> to measure relevance, and this relevance is used to weight the <span class="green">Values</span>.</p>
+<p>이렇게 만들어진 <span class="blue">쿼리</span>는 <span class="red">키</span>와 비교되어 관련도를 측정하고, 이 관련도를 이용해 <span class="green">밸류</span>에 가중치를 부여합니다.</p>
 `,
 		on: function () {
 			this.timeoutId = setTimeout(
@@ -283,9 +283,9 @@ export const textPages: TextbookPage[] = [
 
 	{
 		id: 'multi-head',
-		title: 'Multi-head',
+		title: '멀티 헤드',
 		content:
-			'<p>After creating <span class="blue">Q</span>, <span class="red">K</span>, and <span class="green">V</span> embeddings, the model splits them into several <strong>heads</strong> (12 in GPT-2 small). Each head works with its own smaller set of <span class="blue">Q</span>/<span class="red">K</span>/<span class="green">V</span>, focusing on different patterns in the text—like grammar, meaning, or long-range links.</p><p>Multiple heads let the model learn many kinds of relationships in parallel, making its understanding richer.</p>',
+			'<p><span class="blue">Q</span>, <span class="red">K</span>, <span class="green">V</span> 임베딩을 만든 뒤, 모델은 이를 여러 개의 <strong>헤드</strong>로 나눕니다(GPT-2 small은 12개). 각 헤드는 자기만의 더 작은 <span class="blue">Q</span>/<span class="red">K</span>/<span class="green">V</span> 묶음으로 작업하며 문법, 의미, 멀리 떨어진 단어 간의 연결 같은 텍스트의 서로 다른 패턴에 집중합니다.</p><p>여러 헤드 덕분에 모델은 다양한 종류의 관계를 병렬로 학습하여 더 풍부하게 이해할 수 있습니다.</p>',
 		on: () => {
 			highlightAttentionPath();
 			highlightElements(['.multi-head .head-title']);
@@ -307,8 +307,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'masked-self-attention',
-		title: 'Masked Self Attention',
-		content: `<p>In each head, the model decides how much each token focuses on others:</p><ul><li><strong>Dot Product</strong> – Multiply matching numbers in <span class="blue">Query</span>/<span class="red">Key</span> vectors, sum to get <span class="purple">attention scores</span>.</li><li><strong>Mask</strong> – Hide future tokens so it can't peek ahead.</li><li><strong>Softmax</strong> – Convert scores to probabilities, each row summing to 1, showing focus on earlier tokens.</li></ul>`,
+		title: '마스크드 셀프 어텐션',
+		content: `<p>각 헤드에서 모델은 각 토큰이 다른 토큰에 얼마나 주목할지 결정합니다.</p><ul><li><strong>내적(Dot Product)</strong> – <span class="blue">쿼리</span>/<span class="red">키</span> 벡터에서 같은 위치의 숫자끼리 곱한 뒤 모두 더해 <span class="purple">어텐션 점수</span>를 구합니다.</li><li><strong>마스크(Mask)</strong> – 미래 토큰을 가려서 앞을 엿보지 못하게 합니다.</li><li><strong>소프트맥스(Softmax)</strong> – 점수를 확률로 바꿉니다. 각 행의 합은 1이 되며, 앞쪽 토큰들에 얼마나 주목하는지를 보여 줍니다.</li></ul>`,
 		on: () => {
 			highlightAttentionPath();
 			highlightElements(['.attention-matrix.attention-result']);
@@ -331,9 +331,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'output-concatenation',
-		title: 'Attention Output & Concatenation',
+		title: '어텐션 출력과 연결',
 		content:
-			'<p>Each head <span class="highlight">multiplies its <span class="purple">attention scores</span> with the <span class="green">Value</span> embeddings to produce its attention output</span>—a refined representation of each token after considering context.</p><p>GPT-2 (small) has 12 such outputs, which are concatenated to form a single vector of the original size (768 numbers).</p>',
+			'<p>각 헤드는 <span class="highlight"><span class="purple">어텐션 점수</span>와 <span class="green">밸류</span> 임베딩을 곱해 어텐션 출력을 만듭니다</span>. 이는 문맥을 고려한 뒤 각 토큰을 다듬은 표현입니다.</p><p>GPT-2 (small)에는 이런 출력이 12개 있으며, 이들을 이어 붙여(concatenate) 원래 크기(숫자 768개)의 벡터 하나를 만듭니다.</p>',
 		on: function () {
 			this.timeoutId = setTimeout(
 				() => {
@@ -363,9 +363,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'mlp',
-		title: 'MLP (Multi-Layer Perceptron)',
+		title: 'MLP (다층 퍼셉트론)',
 		content:
-			'<p>The attention output goes through an <strong>MLP</strong> to refine token representations. A Linear layer changes embedding values and size using learned weights and bias, then a non-linear activation decides how much each value passes.</p><p>Many activation types exist; GPT-2 uses <strong>GELU</strong>, which lets small values pass partially and large values pass fully, helping capture both subtle and strong patterns.</p>',
+			'<p>어텐션 출력은 토큰 표현을 다듬기 위해 <strong>MLP</strong>를 통과합니다. 선형(Linear) 층이 학습된 가중치와 편향으로 임베딩의 값과 크기를 바꾸고, 이어서 비선형 활성화 함수가 각 값을 얼마나 통과시킬지 결정합니다.</p><p>활성화 함수에는 여러 종류가 있는데, GPT-2는 <strong>GELU</strong>를 사용합니다. GELU는 작은 값은 일부만, 큰 값은 모두 통과시켜 미묘한 패턴과 강한 패턴을 함께 포착하도록 돕습니다.</p>',
 		on: () => {
 			highlightElements(['.step.mlp', '.operation-col.activation']);
 		},
@@ -376,8 +376,8 @@ export const textPages: TextbookPage[] = [
 
 	{
 		id: 'output-logit',
-		title: 'Output Logit',
-		content: `<p>After all Transformer blocks, the last token's output embedding, enriched with context from all previous tokens, is multiplied by learned weights in a final layer.</p><p>This produces <strong>logits</strong>, 50,257 numbers—one for each token in GPT-2’s vocabulary—that indicate how likely each token is to come next.</p>`,
+		title: '출력 로짓',
+		content: `<p>모든 트랜스포머 블록을 거친 뒤, 앞선 모든 토큰의 문맥이 담긴 마지막 토큰의 출력 임베딩에 마지막 층의 학습된 가중치를 곱합니다.</p><p>그 결과 <strong>로짓(logit)</strong>이 만들어집니다. 로짓은 GPT-2 어휘의 토큰마다 하나씩, 총 50,257개의 숫자로 각 토큰이 다음에 올 가능성이 얼마나 되는지를 나타냅니다.</p>`,
 		on: () => {
 			highlightElements(['g.path-group.softmax', '.column.final']);
 		},
@@ -398,9 +398,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'output-probabilities',
-		title: 'Probabilities',
+		title: '확률',
 		content:
-			'<p>Logits are just raw scores. To make them easier to interpret, we convert them into <strong>probabilities</strong> between 0 and 1, where all add up to 1. This tells us the likelihood of each token being the next word.</p><p>Instead of always picking the highest-probability token, we can use different selection strategies to balance safety and creativity in the generated text.</p>',
+			'<p>로짓은 가공되지 않은 점수일 뿐입니다. 해석하기 쉽도록 0과 1 사이의 값이면서 모두 더하면 1이 되는 <strong>확률</strong>로 바꿉니다. 이 확률이 각 토큰이 다음 단어가 될 가능성을 알려 줍니다.</p><p>항상 확률이 가장 높은 토큰만 고르는 대신, 여러 선택 전략을 사용해 생성되는 텍스트의 안정성과 창의성 사이에서 균형을 맞출 수 있습니다.</p>',
 		on: () => {
 			highlightElements(['.step.softmax .title']);
 		},
@@ -420,9 +420,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'temperature',
-		title: 'Temperature',
+		title: '온도(Temperature)',
 		content:
-			'<p><strong>Temperature</strong> works by scaling the logits before turning them into probabilities. A <strong>low temperature</strong> (e.g., 0.2) makes large logits even larger and small ones smaller, favoring the highest-scoring tokens and leading to more <strong>predictable choices</strong>. A <strong>high temperature</strong> (e.g., 1.0 or above) flattens the differences, making less likely tokens more competitive and leading to more <strong>creative outputs</strong>.</p>',
+			'<p><strong>온도(temperature)</strong>는 로짓을 확률로 바꾸기 전에 로짓의 크기를 조정합니다. <strong>낮은 온도</strong>(예: 0.2)는 큰 로짓은 더 크게, 작은 로짓은 더 작게 만들어 점수가 가장 높은 토큰을 선호하게 하므로 더 <strong>예측 가능한 선택</strong>으로 이어집니다. <strong>높은 온도</strong>(예: 1.0 이상)는 차이를 평평하게 만들어 가능성이 낮은 토큰도 경쟁력을 갖게 하므로 더 <strong>창의적인 출력</strong>으로 이어집니다.</p>',
 		on: function () {
 			if (get(expandedBlock).id !== 'softmax') {
 				expandedBlock.set({ id: 'softmax' });
@@ -470,9 +470,9 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'sampling',
-		title: 'Sampling Strategy',
+		title: '샘플링 전략',
 		content:
-			'<p>Finally, we need a strategy to pick the next token. Many exist, but here are common ones: Greedy search picks the top one. <strong>Top-k</strong> keeps only the k most likely tokens, and <strong>top-p</strong> keeps the smallest set whose total probability is at least p—trimming unlikely ones early.</p><p>Then softmax turns the remaining logits into probabilities, and one token is picked at random from the allowed set.</p>',
+			'<p>마지막으로 다음 토큰을 고를 전략이 필요합니다. 여러 방법이 있지만 흔히 쓰이는 것은 다음과 같습니다. 탐욕적 탐색(greedy search)은 가장 높은 것 하나를 고릅니다. <strong>Top-k</strong>는 가능성이 가장 높은 k개 토큰만 남기고, <strong>top-p</strong>는 확률의 합이 p 이상이 되는 가장 작은 토큰 집합만 남겨 가능성이 낮은 토큰을 미리 잘라 냅니다.</p><p>그런 다음 소프트맥스가 남은 로짓을 확률로 바꾸고, 허용된 집합에서 토큰 하나를 무작위로 뽑습니다.</p>',
 		on: function () {
 			if (get(expandedBlock).id !== 'softmax') {
 				expandedBlock.set({ id: 'softmax' });
@@ -520,8 +520,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'residual',
-		title: 'Residual Connection',
-		content: `<p>Transformers have auxiliary features that enhance the model performance. For example, a <strong>residual connection</strong> adds a layer's input to its output, keeping information from fading through many blocks. In GPT-2, it's used twice per block to train deeper stacks effectively.</p>`,
+		title: '잔차 연결',
+		content: `<p>트랜스포머에는 모델 성능을 높여 주는 보조 요소들이 있습니다. 예를 들어 <strong>잔차 연결(residual connection)</strong>은 층의 입력을 그 층의 출력에 더해, 정보가 여러 블록을 거치면서 사라지지 않도록 합니다. GPT-2에서는 블록마다 두 번 사용되어 더 깊은 구조를 효과적으로 학습할 수 있게 합니다.</p>`,
 		on: function () {
 			this.timeoutId = setTimeout(
 				() => {
@@ -542,8 +542,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'layer-normalization',
-		title: 'Layer Normalization',
-		content: `<p><strong>Layer Normalization</strong> helps stabilize both training and inference by adjusting input numbers so their mean and variance stay consistent. This makes the model less sensitive to its starting weights and helps it learn more effectively. In GPT-2, it's applied before self-attention, before the MLP, and once more before the final output.</p>`,
+		title: '층 정규화',
+		content: `<p><strong>층 정규화(Layer Normalization)</strong>는 입력 숫자들의 평균과 분산이 일정하게 유지되도록 조정하여 학습과 추론을 모두 안정시킵니다. 덕분에 모델은 초기 가중치에 덜 민감해지고 더 효과적으로 학습할 수 있습니다. GPT-2에서는 셀프 어텐션 앞, MLP 앞, 그리고 최종 출력 앞에서 한 번 더 적용됩니다.</p>`,
 		on: () => {
 			highlightElements(['.operation-col.ln']);
 		},
@@ -553,8 +553,8 @@ export const textPages: TextbookPage[] = [
 	},
 	{
 		id: 'dropout',
-		title: 'Dropout',
-		content: `<p>During training, <strong>dropout</strong> randomly turns off some connections between numbers so the model doesn't overfit to specific patterns. This helps it learn features that generalize better. GPT-2 uses it, but newer LLMs often skip it because they train on huge datasets and overfitting is less of a problem. In inference, dropout is turned off.</p>`,
+		title: '드롭아웃',
+		content: `<p>학습 중에 <strong>드롭아웃(dropout)</strong>은 숫자 사이의 연결 일부를 무작위로 끊어, 모델이 특정 패턴에 과적합되지 않도록 합니다. 이를 통해 더 잘 일반화되는 특징을 학습할 수 있습니다. GPT-2는 드롭아웃을 사용하지만, 최신 LLM은 거대한 데이터셋으로 학습해 과적합이 덜 문제가 되기 때문에 생략하는 경우가 많습니다. 추론 시에는 드롭아웃이 꺼집니다.</p>`,
 		on: () => {
 			highlightElements(['.operation-col.dropout']);
 		},

@@ -353,7 +353,7 @@
 				{showTooltip}
 			/>
 			<TextbookTooltip id="masked-self-attention">
-				<div class="matrix-label">Dot product</div>
+				<div class="matrix-label">내적</div>
 			</TextbookTooltip>
 
 			<Tooltip class="popover tooltip">
@@ -419,7 +419,7 @@
 				/>
 			</div>
 			<TextbookTooltip id="masked-self-attention">
-				<div class="matrix-label">Scaling · Mask</div>
+				<div class="matrix-label">스케일링 · 마스크</div>
 			</TextbookTooltip>
 
 			<Tooltip class="popover tooltip">
@@ -523,7 +523,7 @@
 			/>
 
 			<div class="matrix-label flex items-center gap-1">
-				Attention <ZoomInOutline></ZoomInOutline>
+				어텐션 <ZoomInOutline></ZoomInOutline>
 			</div>
 		</div>
 	</div>

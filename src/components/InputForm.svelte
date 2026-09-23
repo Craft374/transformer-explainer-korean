@@ -180,7 +180,7 @@
 						bind:this={inputRef}
 						contenteditable={!disabled}
 						class="text-box"
-						placeholder="Test your own input text"
+						placeholder="직접 입력해 보세요 (영어만 지원)"
 						on:focus={onFocusInput}
 						on:input={onInput}
 						on:keydown={handleKeyDown}
@@ -212,14 +212,14 @@
 				{/if}
 				{#if $isMobile}
 					<span class="helper-text"
-						>Try the examples. Please use a desktop computer to input GPT-2 prompts directly.</span
+						>예시를 사용해 보세요. GPT-2 프롬프트를 직접 입력하려면 데스크톱 컴퓨터를 이용해 주세요.</span
 					>
 				{:else if $isLoaded && $isFetchingModel}
 					<span class="helper-text"
-						>Try the examples while GPT-2 model is being downloaded (600MB)</span
+						>GPT-2 모델(600MB)을 다운로드하는 동안 예시를 사용해 보세요</span
 					>
 				{:else if exceedLimit}
-					<span class="helper-text">You can enter up to {wordLimit} words.</span>
+					<span class="helper-text">최대 {wordLimit}단어까지 입력할 수 있습니다.</span>
 				{/if}
 			</div>
 		</ButtonGroup>
@@ -233,7 +233,7 @@
 			type="submit"
 			on:click={handleSubmit}
 		>
-			Generate
+			생성
 		</button>
 	</form>
 	<div class="parameters" data-click="input-parameters">

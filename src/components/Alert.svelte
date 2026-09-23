@@ -13,13 +13,13 @@
 	<div transition:fade>
 		<Alert color="blue" dismissable>
 			<div class="alert-content">
-				We collect anonymous data for research.
+				연구 목적으로 익명 데이터를 수집합니다.
 				<a
 					href="./consent-form.pdf"
 					class="font-semibold underline hover:text-blue-800 dark:hover:text-blue-900"
 					target="_blank"
 				>
-					Learn more
+					자세히 보기
 				</a>
 			</div>
 		</Alert>

@@ -317,13 +317,13 @@
 	};
 </script>
 
-<WeightPopoverCard id="logits" title={'Logits'} bind:isAnimationActive {timeline} bind:isOpen>
+<WeightPopoverCard id="logits" title={'로짓'} bind:isAnimationActive {timeline} bind:isOpen>
 	<div class="weight-popover-content flex items-center justify-start">
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				<span>Output<br />Embedding</span>
+				<span>출력<br />임베딩</span>
 				<HelpPopover id="hidden-states" 
-					>{`After passing through all blocks, \nthe final token's embedding vector \ncontains all the contextual information \nfrom the preceding tokens.`}</HelpPopover
+					>{`모든 블록을 거친 뒤 \n마지막 토큰의 임베딩 벡터에는 \n앞선 토큰들의 문맥 정보가 \n모두 담겨 있습니다.`}</HelpPopover
 				>
 			</div>
 			<Matrix
@@ -341,9 +341,9 @@
 		<div class="operator"><div class="symbol mul pl-3">&times;</div></div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Output Projection Weights
+				출력 투영 가중치
 				<HelpPopover id="lm-head-weights" 
-					>{`Transforms the final embedding into a vocabulary distribution.\nParameters were learned in training, fixed in prediction.`}</HelpPopover
+					>{`최종 임베딩을 어휘 분포로 변환합니다.\n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<div class="flex gap-0">
@@ -365,8 +365,8 @@
 		<div class="operator"><div class="symbol plus">+</div></div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Output Projection Bias<HelpPopover id="lm-head-bias" 
-					>{`Offsets added after the transformation.\nParameters were learned in training, fixed in prediction.`}</HelpPopover
+				출력 투영 편향<HelpPopover id="lm-head-bias" 
+					>{`변환 후 더해지는 오프셋입니다.\n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<Matrix
@@ -385,9 +385,9 @@
 		<div class="operator"><div class="symbol equal">=</div></div>
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
-				Logits
+				로짓
 				<HelpPopover id="logits" 
-					>{`Raw scores representing the model’s preference \nfor each vocabulary token before applying softmax.`}</HelpPopover
+					>{`소프트맥스를 적용하기 전, 어휘의 각 토큰에 대한 \n모델의 선호도를 나타내는 원시 점수입니다.`}</HelpPopover
 				>
 			</div>
 			<div class="flex">

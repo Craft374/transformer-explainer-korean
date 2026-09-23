@@ -29,14 +29,14 @@
 		class="softmax-popover-title rounded-t-md border-b border-gray-200 bg-gray-100 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
 	>
 		<h3 class="font-semibold text-gray-900">
-			Probability of <span class="highlight">"{selected?.token}"</span> token being sampled
+			<span class="highlight">"{selected?.token}"</span> 토큰이 샘플링될 확률
 		</h3>
 	</div>
 	<div class="softmax-popover-content">
 		<div class="formula-steps">
 			<div class="formula-step scaled">
 				<TextbookTooltip id="temperature">
-					<div class="step-title">Scaled logit</div></TextbookTooltip
+					<div class="step-title">스케일된 로짓</div></TextbookTooltip
 				>
 				<div class="step-content">
 					<div class="fraction">
@@ -88,7 +88,7 @@
 			<div class="formula-step sampling">
 				<TextbookTooltip id="sampling">
 					<div class="step-title">
-						<span>{$sampling.type === 'top-k' ? 'Top-k' : 'Top-p'} Filtering</span>
+						<span>{$sampling.type === 'top-k' ? 'Top-k' : 'Top-p'} 필터링</span>
 						<span class="sub-title"
 							>({$sampling.type === 'top-k' ? 'k' : 'p'}={$sampling.value})</span
 						>
@@ -100,7 +100,7 @@
 							<div class="cases">
 								<div class="case-row">
 									<span class="condition text"
-										>If logit <Katex math={'\\in'} /> Top-{$sampling.value}
+										>로짓 <Katex math={'\\in'} /> Top-{$sampling.value}이면
 									</span>
 									<span class="number" class:highlight={selected?.rank < $sampling.value}
 										>{getStringNumber(selected?.scaledLogit)}</span
@@ -108,7 +108,7 @@
 								</div>
 								<div class="case-row">
 									<span class="condition text"
-										>Otherwise <span
+										>그 외 <span
 											class="number infinity"
 											class:highlight={selected?.rank >= $sampling.value}
 											><Katex math={'-\\infty'} /></span
@@ -120,7 +120,7 @@
 							<div class="cases">
 								<div class="case-row">
 									<span class="condition text">
-										If cumulative prob ≤ {$sampling.value}
+										누적 확률 ≤ {$sampling.value}이면
 									</span>
 									<span class="number" class:highlight={selected?.rank <= selected?.cutoffIndex}
 										>{getStringNumber(selected?.topPProbability)}</span
@@ -128,7 +128,7 @@
 								</div>
 								<div class="case-row">
 									<span class="condition text"
-										>Otherwise <span
+										>그 외 <span
 											class="number infinity"
 											class:highlight={selected?.rank > selected?.cutoffIndex}>0</span
 										></span
@@ -182,7 +182,7 @@
 				</div>
 			{:else}
 				<div class="formula-step norm-step">
-					<div class="step-title">Normalization</div>
+					<div class="step-title">정규화</div>
 					<div class="step-content">
 						{#if selected?.cutoffIndex >= selected?.rank}
 							<div class="fraction">

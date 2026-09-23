@@ -12,7 +12,7 @@
 
 <CommonPopover
 	className="residual-popover"
-	title="Residual Connection"
+	title="잔차 연결"
 	{offset}
 	{triggeredBy}
 	{trigger}
@@ -21,7 +21,7 @@
 	goTo="article-residual"
 >
 	<div class="residual-content">
-		Adds layer input to output to help preserve information.
+		층의 입력을 출력에 더해 정보가 보존되도록 돕습니다.
 	</div></CommonPopover
 >
 

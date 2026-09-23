@@ -63,7 +63,7 @@
 					})}
 				data-click={`read-more-btn-${className}`}
 			>
-				Read more
+				더 읽어보기
 			</div>
 		{/if}
 	</div></Popover

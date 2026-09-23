@@ -29,8 +29,8 @@
 			>
 				<div class="text" class:highlight={$isBoundingBoxActive}>
 					<TextbookTooltip id="blocks">
-						<span class="strong">{$modelMeta.layer_num - $blockIdx - 1}</span> more identical<br
-						/><span class="strong">Transformer<br />Blocks</span>
+						동일한 <span class="strong">트랜스포머<br />블록</span><br
+						/><span class="strong">{$modelMeta.layer_num - $blockIdx - 1}</span>개 더
 					</TextbookTooltip>
 				</div>
 
