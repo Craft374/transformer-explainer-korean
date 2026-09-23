@@ -28,7 +28,7 @@ _Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems._
 #### 실행 방법
 
 ```bash
-git clone -b korean https://github.com/Craft374/transformer-explainer-korean.git
+git clone https://github.com/Craft374/transformer-explainer-korean.git
 cd transformer-explainer-korean
 npm install
 npm run dev
