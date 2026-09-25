@@ -285,8 +285,10 @@
 						height: 300px;
 						overflow-y: auto;
 						min-width: 200px;
+						width: max-content;
 
 						.dropdown-item {
+							white-space: nowrap;
 							display: block;
 							width: 100%;
 							padding: 0.5rem 0.75rem;

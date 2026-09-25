@@ -224,6 +224,7 @@ function topKSampling(
 	const output = filteredLogits.map((item, i) => ({
 		...item,
 		rank: i,
+		raw: tokenText(tokenizer, item.tokenId),
 		token: formatTokenForDisplay(tokenText(tokenizer, item.tokenId)),
 		expLogit: expLogits[i],
 		probability: probabilities[i]
@@ -281,6 +282,7 @@ function topPSampling(
 	const output = scaledLogits.map((item, i) => ({
 		...item,
 		rank: i,
+		raw: tokenText(tokenizer, item.tokenId),
 		token: formatTokenForDisplay(tokenText(tokenizer, item.tokenId)),
 		expLogit: expLogits[i],
 		probability: newProbabilities[i] || 0,
@@ -313,29 +315,26 @@ function formatTokenForDisplay(token: string): string {
 }
 
 // Simulates the np.random.choice function in Python.
+// A bare-space token cannot extend a sentence, so it is never suggested (it stays in the list).
 function randomChoice(items: Probabilities): Probability {
-	const probabilities = items.map((d) => d.probability);
+	const candidates = items.filter((d) => (d.raw ?? d.token).trim() !== '');
+	const pool = candidates.length ? candidates : items;
+	const total = pool.reduce((sum, d) => sum + d.probability, 0);
 
-	// Ensure probabilities sum to 1
-	// const totalProb = probabilities.reduce((sum, p) => sum + p, 0);
-	// if (Math.abs(totalProb - 1.0) > 1e-6) {
-	// 	throw new Error('Probabilities must sum to 1.');
-	// }
-
-	// Generate a random number between 0 and 1
-	const random = Math.random();
+	// Generate a random number between 0 and the pool's total probability
+	const random = Math.random() * total;
 
 	// Accumulate probabilities and find the corresponding item
 	let cumulativeProbability = 0;
-	for (let i = 0; i < probabilities.length; i++) {
-		cumulativeProbability += probabilities[i];
+	for (const item of pool) {
+		cumulativeProbability += item.probability;
 		if (random < cumulativeProbability) {
-			return items[i];
+			return item;
 		}
 	}
 
 	// Fallback in case of numerical issues
-	return items[items.length - 1];
+	return pool[pool.length - 1];
 }
 
 const attentionTensors = Array(modelMetaMap.gpt2.layer_num)

@@ -341,7 +341,7 @@
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
 				확장 가중치<HelpPopover id="mlp-weights" 
-					>{`임베딩 벡터를 확장된 잠재 공간으로 투영합니다. \n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
+					>{`임베딩 벡터를 확장된 잠재 공간으로 투영합니다. \n학습으로 얻은 파라미터이며, 추론 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<div class="flex gap-0">
@@ -364,7 +364,7 @@
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
 				확장 편향 <HelpPopover id="mlp-bias" 
-					>{`확장 후 더해지는 오프셋입니다. \n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
+					>{`확장 후 더해지는 오프셋입니다. \n학습으로 얻은 파라미터이며, 추론 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<Matrix

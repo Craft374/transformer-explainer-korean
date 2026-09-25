@@ -340,7 +340,7 @@
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
 				Q·K·V 가중치<HelpPopover id="qkv-weights" 
-					>{`임베딩 벡터를 쿼리, 키, 밸류 벡터로 변환합니다. \n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
+					>{`임베딩 벡터를 쿼리, 키, 밸류 벡터로 변환합니다. \n학습으로 얻은 파라미터이며, 추론 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<div class="flex gap-0">
@@ -363,7 +363,7 @@
 		<div class="matrix flex flex-col items-center">
 			<div class="title flex items-center gap-1">
 				Q·K·V 편향<HelpPopover id="qkv-bias" 
-					>{`변환 후 더해지는 오프셋입니다. \n학습 중에 학습된 파라미터이며, 예측 시에는 고정됩니다.`}</HelpPopover
+					>{`변환 후 더해지는 오프셋입니다. \n학습으로 얻은 파라미터이며, 추론 시에는 고정됩니다.`}</HelpPopover
 				>
 			</div>
 			<Matrix

@@ -41,13 +41,13 @@
 				<div class="step-content">
 					<div class="fraction">
 						<div class="frac-top relative">
-							<span class="annotation logit"><span>logit</span><Arrow size={16} /></span>
+							<span class="annotation logit"><span>로짓</span><Arrow size={16} /></span>
 							<span class="highlight number">{getStringNumber(selected.logit)}</span>
 						</div>
 						<div class="frac-line"></div>
 						<div class="frac-bottom relative">
 							<span class="number">{$temperature}</span>
-							<span class="annotation temp"> <Arrow size={16} /><span>temperature</span></span>
+							<span class="annotation temp"> <Arrow size={16} /><span>온도</span></span>
 						</div>
 					</div>
 				</div>
@@ -56,7 +56,7 @@
 			{#if $sampling.type === 'top-p'}
 				<div class="formula-step">
 					<div class="step-title">
-						<div>Softmax</div>
+						<div>소프트맥스</div>
 					</div>
 					<div class="step-content">
 						<div class="fraction-formula">
@@ -142,7 +142,7 @@
 			<ArrowRightOutline class="step-arrow" />
 			{#if $sampling.type === 'top-k'}
 				<div class="formula-step softmax-step">
-					<div class="step-title">Softmax</div>
+					<div class="step-title">소프트맥스</div>
 					<div class="step-content">
 						<div class="fraction">
 							<div class="frac-top">

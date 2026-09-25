@@ -39,6 +39,7 @@ type Probability = {
 	rank: number;
 	tokenId: number;
 	token: string;
+	raw?: string; // token text as typed (token is the display form, e.g. [NEWLINE])
 	logit: number;
 	scaledLogit: number;
 	expLogit: number;

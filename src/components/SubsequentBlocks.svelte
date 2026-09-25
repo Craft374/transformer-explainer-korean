@@ -59,7 +59,7 @@
 				</div>
 			{/each}
 			<Tooltip class="popover" triggeredBy={'.transformer-blocks .vector'} placement="right"
-				>vector({$modelMeta.dimension})</Tooltip
+				>벡터({$modelMeta.dimension})</Tooltip
 			>
 		</div>
 		<div class="second-column">

@@ -45,7 +45,7 @@
 		</p>
 		<p>
 			GPT-2 계열 모델은 텍스트 생성 트랜스포머의 대표적인 예입니다. 이 한국어판 Transformer Explainer는
-			GPT-2 (small)와 같은 구조를 가진 한국어 모델
+			GPT-2 (small)과 같은 구조를 가진 한국어 모델
 			<a href="https://huggingface.co/skt/kogpt2-base-v2" title="Hugging Face" target="_blank"
 				>KoGPT2</a
 			>(SK텔레콤, 약 1억 2,500만 개의 파라미터)로 동작합니다. 최신이거나 가장 강력한 트랜스포머 모델은
@@ -98,6 +98,9 @@
 			임베딩은 텍스트를 모델이 다룰 수 있는 숫자 표현으로 바꿔 줍니다. 프롬프트를 임베딩으로 바꾸려면
 			1) 입력을 토큰화하고, 2) 토큰 임베딩을 얻고, 3) 위치 정보를 더한 뒤, 마지막으로 4) 토큰 인코딩과
 			위치 인코딩을 합쳐 최종 임베딩을 얻어야 합니다. 각 단계가 어떻게 이루어지는지 살펴봅시다.
+		</p>
+		<p>
+			<small>※ 이 글의 그림 5장은 원본(영어판) 이미지라, 그림 속 글자와 예시는 영어(GPT-2)입니다.</small>
 		</p>
 		<div class="figure">
 			<img src="./article_assets/embedding.png" width="65%" />
@@ -489,7 +492,7 @@
 	</div>
 
 	<div class="article-section" data-click="article-video">
-		<h2>동영상 튜토리얼</h2>
+		<h2>동영상 튜토리얼 (영어)</h2>
 		<div class="video-container">
 			<iframe
 				src="https://www.youtube.com/embed/ECR4oAwocjs"
@@ -512,7 +515,10 @@
 			형식으로 변환했습니다. KoGPT2는 SK텔레콤이 공개한
 			<a href="https://huggingface.co/skt/kogpt2-base-v2" title="Hugging Face" target="_blank"
 				>skt/kogpt2-base-v2</a
-			>이며 CC BY-NC-SA 4.0 라이선스(비영리 목적에 한해 사용 가능)를 따릅니다. 인터페이스는 JavaScript로 만들어졌으며, 프런트엔드 프레임워크로
+			>이며
+			<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ko" target="_blank">CC BY-NC-SA 4.0</a>
+			라이선스(저작자 표시 · 비영리 · 동일 조건 변경 허락)를 따릅니다. 이 사이트에서 쓰는 가중치는 원본을
+			ONNX 형식으로 변환한 것입니다. 인터페이스는 JavaScript로 만들어졌으며, 프런트엔드 프레임워크로
 			<a href="https://kit.svelte.dev/" title="Svelte" target="_blank">Svelte</a>를, 동적 시각화에는
 			<a href="https://d3js.org/" title="D3" target="_blank">D3.js</a>를 사용했습니다. 수치는 사용자
 			입력에 따라 실시간으로 갱신됩니다.

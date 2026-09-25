@@ -287,7 +287,7 @@
 			</div>
 		</div>
 		<div class="matrix flex flex-col items-center">
-			<div class="title flex items-center gap-1">Value</div>
+			<div class="title flex items-center gap-1">밸류</div>
 			<div class="flex gap-0">
 				<Matrix
 					className="value-matrix"

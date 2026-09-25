@@ -250,7 +250,7 @@
 		on:mouseenter={handleMouseEnter}
 		on:mouseleave={handleMouseLeave}
 		role="dialog"
-		aria-label="Textbook"
+		aria-label="교재"
 		style="width: {size.width}px; height: {size.height}px;"
 	>
 		<div class="card-header">
@@ -258,7 +258,7 @@
 				<h3 class="text-lg font-semibold text-gray-900">
 					{textPages[$textbookCurrentPage].title}
 				</h3>
-				<Button color="light" size="xs" class="close-btn" on:click={handleClose}>✕</Button>
+				<Button color="light" size="xs" class="close-btn" aria-label="교재 닫기" on:click={handleClose}>✕</Button>
 			</div>
 		</div>
 		<div class="card-body">

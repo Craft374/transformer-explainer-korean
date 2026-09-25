@@ -35,21 +35,24 @@
 
 	$: inputTextTemp = $inputText || '';
 
-	$: predictedTokenTemp = $predictedToken?.token || '';
+	$: predictedTokenTemp = $predictedToken?.raw ?? $predictedToken?.token ?? '';
 
 	const wordLimit = 12;
-	$: exceedLimit = inputTextTemp.split(' ').length >= wordLimit;
+	// a single very long word tokenizes into hundreds of tokens and crashes the tab
+	const charLimit = 100;
+	$: exceedLimit = inputTextTemp.split(' ').length >= wordLimit || inputTextTemp.length > charLimit;
 
 	// Text input
-	const onFocusInput = (e) => {
-		let formattedString = (inputTextTemp + predictedTokenTemp).replace(/[\s\n]+/g, ' ');
-
-		inputTextTemp = formattedString;
-
-		// set predicted to empty
-		predictedTokenTemp = '';
+	const acceptPrediction = (token: string) => {
+		inputTextTemp = (inputTextTemp + token).replace(/[\s\n]+/g, ' ');
 		// set input box text
 		inputRef.innerText = inputTextTemp;
+	};
+
+	const onFocusInput = (e?) => {
+		acceptPrediction(predictedTokenTemp);
+		// set predicted to empty
+		predictedTokenTemp = '';
 	};
 
 	const onInput = (e) => {
@@ -57,16 +60,17 @@
 	};
 
 	const handleSubmit = (e) => {
-		// only a prediction the user could already see may be accepted; finishing the running
-		// animation below publishes the previous run's prediction, which must not join a new sentence
+		// Take the visible suggestion now, and only once: finishing the running animation below
+		// publishes the previous run's prediction, which must not join a newly typed sentence,
+		// and a second submit in the same tick must not accept the same suggestion twice
 		const acceptedToken = predictedTokenTemp;
+		predictedTokenTemp = '';
 
 		// Complete any running animation before starting new generation
 		completeCurrentAnimation();
 
 		setTimeout(() => {
-			predictedTokenTemp = acceptedToken;
-			onFocusInput();
+			acceptPrediction(acceptedToken);
 			textPages.find((page) => page.id === 'how-transformers-work')?.complete();
 
 			inputText.set(inputTextTemp);
@@ -153,7 +157,7 @@
 				class:selectDisabled
 				class="select-button inline-flex shrink-0 items-center justify-center border border-s-0 border-gray-200 bg-white px-3 py-2 text-center text-xs font-medium text-gray-900 first:rounded-s-lg first:border-s last:rounded-e-lg"
 			>
-				Examples<ChevronDownOutline class="pointer-events-none h-4 w-4 text-gray-500" />
+				예시<ChevronDownOutline class="pointer-events-none h-4 w-4 text-gray-500" />
 			</button>
 			<Dropdown bind:open={dropdownOpen} class="example-dropdown">
 				{#each inputTextExample as text, index}
@@ -209,7 +213,7 @@
 								moveCursorToEnd(inputRef);
 							}}
 						>
-							<span>{predictedTokenTemp}</span>
+							<span>{predictedTokenTemp.replace(/\s+/g, ' ')}</span>
 						</div>
 					{/if}
 				</div>
@@ -225,7 +229,7 @@
 						>KoGPT2 모델(약 660MB)을 다운로드하는 동안 예시를 사용해 보세요</span
 					>
 				{:else if exceedLimit}
-					<span class="helper-text">최대 {wordLimit}단어까지 입력할 수 있습니다.</span>
+					<span class="helper-text">최대 {wordLimit - 1}어절, {charLimit}자까지 입력할 수 있습니다.</span>
 				{/if}
 			</div>
 		</ButtonGroup>
@@ -359,6 +363,7 @@
 		transform: translate(0, 100%);
 		color: theme('colors.gray.400');
 		font-size: 0.9rem;
+		white-space: nowrap;
 	}
 	:global(.generate-button) {
 		padding: 0.4rem 0.8rem;

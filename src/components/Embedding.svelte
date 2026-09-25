@@ -280,7 +280,7 @@
 					{/each}
 				</div>
 				<Tooltip triggeredBy=".embedding .vector" class="popover" placement="right"
-					>vector({$modelMeta.dimension})</Tooltip
+					>벡터({$modelMeta.dimension})</Tooltip
 				>
 				<!-- <PositionalEncodingPopover triggeredBy=".position-embedding" /> -->
 			{/if}
@@ -295,7 +295,7 @@
 				{/each}
 			</div>
 			<Tooltip triggeredBy=".step.embedding .vector" class="popover" placement="right"
-				>vector({$modelMeta.dimension})</Tooltip
+				>벡터({$modelMeta.dimension})</Tooltip
 			>
 		</div>
 	</div>

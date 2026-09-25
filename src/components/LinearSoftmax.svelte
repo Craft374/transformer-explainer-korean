@@ -266,13 +266,13 @@
 					<div class="title-box sampling">
 						<TextbookTooltip id="sampling"
 							><div class="title-text">
-								{$sampling.type === 'top-k' ? 'Top-k' : 'Softmax & Top-p'}
+								{$sampling.type === 'top-k' ? 'Top-k' : '소프트맥스 & Top-p'}
 							</div></TextbookTooltip
 						>
 					</div>
 					<div class="title-box probability">
 						<div class="title-text mr-1">
-							{$sampling.type === 'top-k' ? 'Softmax' : 'Normalization'}
+							{$sampling.type === 'top-k' ? '소프트맥스' : '정규화'}
 						</div>
 					</div>
 				</div>
@@ -368,7 +368,7 @@
 											{/if}
 										</div>
 										<Tooltip class="softmax-tooltip" type="light">
-											sum=<Katex math={`${cumulativeProbabilities[idx]?.toFixed(2)}`}></Katex>
+											합=<Katex math={`${cumulativeProbabilities[idx]?.toFixed(2)}`}></Katex>
 										</Tooltip>
 									{/if}
 								{/each}
@@ -456,6 +456,7 @@
 					cursor: default;
 					position: relative;
 					flex-shrink: 0;
+					white-space: nowrap;
 					text-align: right;
 					font-size: 0.9rem;
 					padding-right: 4px;
@@ -500,7 +501,7 @@
 							transform: translate(0, 50%);
 							font-size: 0.9rem;
 							font-weight: 600;
-							font-family: serif;
+							font-family: inherit;
 							line-height: 1;
 							background-color: theme('colors.gray.50');
 						}

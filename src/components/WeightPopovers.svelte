@@ -89,6 +89,8 @@
 
 	let x = 0;
 	let y = 0;
+	let innerWidth = 0;
+	let tooltipWidth = 0;
 
 	function handleMouseMove(e) {
 		x = e.clientX + 10;
@@ -120,10 +122,13 @@
 	});
 </script>
 
+<svelte:window bind:innerWidth />
+
 {#if isVisible}
 	<div
 		class="tooltip-box rounded shadow-lg"
-		style="left: {x}px; top: {y}px;"
+		bind:offsetWidth={tooltipWidth}
+		style="left: {Math.min(x, innerWidth - tooltipWidth - 8)}px; top: {y}px;"
 		in:fade={{ duration: 100 }}
 	>
 		{$tooltip}
@@ -195,6 +200,9 @@
 	}
 	.qkv-weight-popover {
 		transform: translateX(1rem);
+	}
+	:global(.qkv-weight-popover .weight-popover-card) {
+		min-width: 36rem; // the Q·K·V formula is wider than the card
 	}
 	.attention-weight-popover {
 		transform: translate(1rem, -50%);

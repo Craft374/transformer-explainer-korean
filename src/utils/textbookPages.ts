@@ -36,7 +36,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'what-is-transformer',
 		title: '트랜스포머란?',
-		content: `<p><strong>트랜스포머(Transformer)</strong>는 ChatGPT, Gemini 같은 모델을 구동하는 현대 AI의 핵심 아키텍처입니다. 2017년에 처음 소개되어 AI가 정보를 처리하는 방식을 혁신했습니다. 같은 아키텍처가 방대한 데이터로 학습(training)할 때와 결과를 생성하는 추론(inference)할 때 모두 쓰입니다. 여기서는 최신 모델보다 단순하지만 기본 원리를 배우기에 딱 알맞은, GPT-2 (small)와 같은 구조의 한국어 모델 KoGPT2를 사용합니다.</p>
+		content: `<p><strong>트랜스포머(Transformer)</strong>는 ChatGPT, Gemini 같은 모델을 구동하는 현대 AI의 핵심 아키텍처입니다. 2017년에 처음 소개되어 AI가 정보를 처리하는 방식을 혁신했습니다. 같은 아키텍처가 방대한 데이터로 모델을 학습(training)할 때와, 학습된 모델로 결과를 생성(추론, inference)할 때 모두 쓰입니다. 여기서는 최신 모델보다 단순하지만 기본 원리를 배우기에 딱 알맞은, GPT-2 (small)과 같은 구조의 한국어 모델 KoGPT2를 사용합니다.</p>
 `,
 		on: () => {},
 		out: () => {}
@@ -125,7 +125,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'token-embedding',
 		title: '토큰 임베딩',
-		content: `<p><strong>토큰화(tokenization)</strong>는 입력 텍스트를 단어나 단어의 일부 같은 작은 단위인 토큰으로 나눕니다. KoGPT2의 어휘에는 51,200개의 토큰이 있고, 각 토큰은 고유한 ID를 갖습니다.</p><p><strong>토큰 임베딩</strong> 단계에서는 모든 토큰을 큰 조회 테이블(lookup table)에서 768개의 숫자로 된 벡터에 대응시킵니다. 이 벡터들은 각 토큰의 의미를 가장 잘 나타내도록 학습 과정에서 학습됩니다.</p>`,
+		content: `<p><strong>토큰화(tokenization)</strong>는 입력 텍스트를 단어나 단어의 일부 같은 작은 단위인 토큰으로 나눕니다. KoGPT2의 어휘에는 51,200개의 토큰이 있고, 각 토큰은 고유한 ID를 갖습니다.</p><p><strong>토큰 임베딩</strong> 단계에서는 모든 토큰을 큰 조회 테이블(lookup table)에서 768개의 숫자로 된 벡터에 대응시킵니다. 이 벡터들은 각 토큰의 의미를 가장 잘 나타내도록 학습 과정에서 조정됩니다.</p>`,
 		on: function () {
 			const selectors = [
 				'.token-column .column.token-string',
@@ -245,7 +245,7 @@ export const textPages: TextbookPage[] = [
 		title: '쿼리, 키, 밸류',
 		content: `
 	<p>셀프 어텐션을 수행하기 위해 각 토큰의 임베딩은
-  <span class="highlight">세 개의 새로운 임베딩</span>,
+  <span class="highlight">세 개의 새로운 임베딩</span>, 즉
   <span class="blue">쿼리(Query)</span>,
   <span class="red">키(Key)</span>,
   <span class="green">밸류(Value)</span>로 변환됩니다.

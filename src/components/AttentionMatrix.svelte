@@ -488,7 +488,7 @@
 			</div>
 
 			<TextbookTooltip id="masked-self-attention">
-				<div class="matrix-label">Softmax</div>
+				<div class="matrix-label">소프트맥스</div>
 			</TextbookTooltip>
 			<Tooltip class="popover tooltip">
 				<Katex math={'\\text{softmax}(\\frac{QK^T}{\\sqrt{d_k}} + M)'}></Katex>

@@ -1,6 +1,6 @@
 # Transformer Explainer (한국어판): 텍스트 생성 모델을 인터랙티브하게 배우기
 
-> 이 저장소는 [poloclub/transformer-explainer](https://github.com/poloclub/transformer-explainer)의 **한국어 번역 fork**입니다. 화면의 UI, 본문 설명, 교재 페이지를 한국어로 옮겼고, 원본의 영어 GPT-2 대신 GPT-2 (small)와 같은 구조의 한국어 모델 **KoGPT2**([skt/kogpt2-base-v2](https://huggingface.co/skt/kogpt2-base-v2))를 사용하므로 **한국어 문장을 직접 입력**해 볼 수 있습니다.
+> 이 저장소는 [poloclub/transformer-explainer](https://github.com/poloclub/transformer-explainer)의 **한국어 번역 fork**입니다. 화면의 UI, 본문 설명, 교재 페이지를 한국어로 옮겼고, 원본이 쓰는 영어 GPT-2 (small) 대신 같은 구조의 한국어 모델 **KoGPT2**([skt/kogpt2-base-v2](https://huggingface.co/skt/kogpt2-base-v2))를 사용하므로 **한국어 문장을 직접 입력**해 볼 수 있습니다.
 
 Transformer Explainer는 GPT 같은 트랜스포머 기반 모델이 어떻게 동작하는지 누구나 배울 수 있도록 만든 인터랙티브 시각화 도구입니다. 브라우저에서 실제 KoGPT2 모델을 실행하므로, 직접 텍스트를 입력해 보면서 트랜스포머의 내부 구성 요소와 연산이 어떻게 함께 작동하여 다음 토큰을 예측하는지 실시간으로 관찰할 수 있습니다. 원본(영어판)은 http://poloclub.github.io/transformer-explainer 에서 사용해 볼 수 있고, 데모 영상은 YouTube https://youtu.be/TFUc41G2ikY 에서 볼 수 있습니다.<br/><br/>
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
@@ -10,7 +10,8 @@ Transformer Explainer는 GPT 같은 트랜스포머 기반 모델이 어떻게 �
 
 ## 라이브 데모
 
-원본(영어판) 사용해 보기: http://poloclub.github.io/transformer-explainer
+- 한국어판: https://craft374.github.io/transformer-explainer-korean/
+- 원본(영어판): https://poloclub.github.io/transformer-explainer
 
 ## 연구 논문
 

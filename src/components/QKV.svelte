@@ -52,7 +52,7 @@
 				{/each}
 			</div>
 			<Tooltip class="popover" triggeredBy={'.qkv .embedding-column .vector'} placement="right"
-				>vector({$modelMeta.dimension})</Tooltip
+				>벡터({$modelMeta.dimension})</Tooltip
 			>
 
 			<div class="operations flex">
@@ -107,7 +107,7 @@
 				</div>
 			{/each}
 			<Tooltip class="popover" triggeredBy={'.qkv .qkv-column .vector'} placement="right"
-				>vector({$modelMeta.dimension * 3})</Tooltip
+				>벡터({$modelMeta.dimension * 3})</Tooltip
 			>
 		</div>
 	</div>

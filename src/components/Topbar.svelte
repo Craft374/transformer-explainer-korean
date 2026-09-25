@@ -66,7 +66,7 @@
 		</a>
 		<!-- repo -->
 		<a
-			href="https://github.com/poloclub/transformer-explainer"
+			href="https://github.com/Craft374/transformer-explainer-korean"
 			target="_blank"
 			data-click="github_btn"
 		>
