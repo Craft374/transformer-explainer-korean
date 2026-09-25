@@ -1,0 +1,8 @@
+KoGPT2 (skt/kogpt2-base-v2) - Copyright SK Telecom
+https://huggingface.co/skt/kogpt2-base-v2
+
+The kogpt2.onnx.part* files in this folder are the original KoGPT2 weights converted to ONNX
+format (src/utils/model/export_to_onnx.py) and split into 10MB parts. ../tokenizer/kogpt2 is
+KoGPT2's tokenizer. Both are licensed under CC BY-NC-SA 4.0
+(https://creativecommons.org/licenses/by-nc-sa/4.0/): attribution required, non-commercial use only,
+and adaptations must be shared under the same license.
