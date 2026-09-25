@@ -36,7 +36,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'what-is-transformer',
 		title: '트랜스포머란?',
-		content: `<p><strong>트랜스포머(Transformer)</strong>는 ChatGPT, Gemini 같은 모델을 구동하는 현대 AI의 핵심 아키텍처입니다. 2017년에 처음 소개되어 AI가 정보를 처리하는 방식을 혁신했습니다. 같은 아키텍처가 방대한 데이터로 학습(training)할 때와 결과를 생성하는 추론(inference)할 때 모두 쓰입니다. 여기서는 최신 모델보다 단순하지만 기본 원리를 배우기에 딱 알맞은 GPT-2 (small)를 사용합니다.</p>
+		content: `<p><strong>트랜스포머(Transformer)</strong>는 ChatGPT, Gemini 같은 모델을 구동하는 현대 AI의 핵심 아키텍처입니다. 2017년에 처음 소개되어 AI가 정보를 처리하는 방식을 혁신했습니다. 같은 아키텍처가 방대한 데이터로 학습(training)할 때와 결과를 생성하는 추론(inference)할 때 모두 쓰입니다. 여기서는 최신 모델보다 단순하지만 기본 원리를 배우기에 딱 알맞은, GPT-2 (small)와 같은 구조의 한국어 모델 KoGPT2를 사용합니다.</p>
 `,
 		on: () => {},
 		out: () => {}
@@ -48,7 +48,7 @@ export const textPages: TextbookPage[] = [
 	<blockquote class="question">
 		"이 입력 다음에 올 가능성이 가장 높은 단어는 무엇일까?"
 	</blockquote>
-	<p>여기서는 학습된 모델이 텍스트를 생성하는 과정을 살펴봅니다. 직접 텍스트를 입력하거나 예시를 고른 다음 <strong>생성</strong> 버튼을 눌러 동작을 확인해 보세요. 모델이 아직 준비되지 않았다면 다른 <strong>예시</strong>를 선택해 보세요. (GPT-2는 영어로 학습된 모델이라 입력은 영어로 해야 합니다.)</p>`,
+	<p>여기서는 학습된 모델이 텍스트를 생성하는 과정을 살펴봅니다. 직접 텍스트를 입력하거나 예시를 고른 다음 <strong>생성</strong> 버튼을 눌러 동작을 확인해 보세요. 모델이 아직 준비되지 않았다면 다른 <strong>예시</strong>를 선택해 보세요.</p>`,
 		on: () => {
 			highlightElements(['.input-form']);
 			if (get(isFetchingModel)) {
@@ -125,7 +125,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'token-embedding',
 		title: '토큰 임베딩',
-		content: `<p><strong>토큰화(tokenization)</strong>는 입력 텍스트를 단어나 단어의 일부 같은 작은 단위인 토큰으로 나눕니다. GPT-2 (small)의 어휘에는 50,257개의 토큰이 있고, 각 토큰은 고유한 ID를 갖습니다.</p><p><strong>토큰 임베딩</strong> 단계에서는 모든 토큰을 큰 조회 테이블(lookup table)에서 768개의 숫자로 된 벡터에 대응시킵니다. 이 벡터들은 각 토큰의 의미를 가장 잘 나타내도록 학습 과정에서 학습됩니다.</p>`,
+		content: `<p><strong>토큰화(tokenization)</strong>는 입력 텍스트를 단어나 단어의 일부 같은 작은 단위인 토큰으로 나눕니다. KoGPT2의 어휘에는 51,200개의 토큰이 있고, 각 토큰은 고유한 ID를 갖습니다.</p><p><strong>토큰 임베딩</strong> 단계에서는 모든 토큰을 큰 조회 테이블(lookup table)에서 768개의 숫자로 된 벡터에 대응시킵니다. 이 벡터들은 각 토큰의 의미를 가장 잘 나타내도록 학습 과정에서 학습됩니다.</p>`,
 		on: function () {
 			const selectors = [
 				'.token-column .column.token-string',
@@ -187,7 +187,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'blocks',
 		title: '반복되는 트랜스포머 블록',
-		content: `<p><strong>트랜스포머 블록</strong>은 모델의 주요 처리 단위이며, 두 부분으로 이루어져 있습니다.</p><ul><li><strong>멀티 헤드 셀프 어텐션</strong> – 토큰끼리 정보를 공유하게 합니다</li><li><strong>MLP</strong> – 각 토큰의 세부 정보를 다듬습니다</li></ul><p>모델은 블록을 여러 개 쌓아서, 토큰 표현이 블록을 통과할수록 더 풍부해지도록 합니다. GPT-2 (small)에는 블록이 12개 있습니다.</p>`,
+		content: `<p><strong>트랜스포머 블록</strong>은 모델의 주요 처리 단위이며, 두 부분으로 이루어져 있습니다.</p><ul><li><strong>멀티 헤드 셀프 어텐션</strong> – 토큰끼리 정보를 공유하게 합니다</li><li><strong>MLP</strong> – 각 토큰의 세부 정보를 다듬습니다</li></ul><p>모델은 블록을 여러 개 쌓아서, 토큰 표현이 블록을 통과할수록 더 풍부해지도록 합니다. KoGPT2에는 블록이 12개 있습니다.</p>`,
 		on: function () {
 			this.timeoutId = setTimeout(
 				() => {
@@ -285,7 +285,7 @@ export const textPages: TextbookPage[] = [
 		id: 'multi-head',
 		title: '멀티 헤드',
 		content:
-			'<p><span class="blue">Q</span>, <span class="red">K</span>, <span class="green">V</span> 임베딩을 만든 뒤, 모델은 이를 여러 개의 <strong>헤드</strong>로 나눕니다(GPT-2 small은 12개). 각 헤드는 자기만의 더 작은 <span class="blue">Q</span>/<span class="red">K</span>/<span class="green">V</span> 묶음으로 작업하며 문법, 의미, 멀리 떨어진 단어 간의 연결 같은 텍스트의 서로 다른 패턴에 집중합니다.</p><p>여러 헤드 덕분에 모델은 다양한 종류의 관계를 병렬로 학습하여 더 풍부하게 이해할 수 있습니다.</p>',
+			'<p><span class="blue">Q</span>, <span class="red">K</span>, <span class="green">V</span> 임베딩을 만든 뒤, 모델은 이를 여러 개의 <strong>헤드</strong>로 나눕니다(KoGPT2는 12개). 각 헤드는 자기만의 더 작은 <span class="blue">Q</span>/<span class="red">K</span>/<span class="green">V</span> 묶음으로 작업하며 문법, 의미, 멀리 떨어진 단어 간의 연결 같은 텍스트의 서로 다른 패턴에 집중합니다.</p><p>여러 헤드 덕분에 모델은 다양한 종류의 관계를 병렬로 학습하여 더 풍부하게 이해할 수 있습니다.</p>',
 		on: () => {
 			highlightAttentionPath();
 			highlightElements(['.multi-head .head-title']);
@@ -333,7 +333,7 @@ export const textPages: TextbookPage[] = [
 		id: 'output-concatenation',
 		title: '어텐션 출력과 연결',
 		content:
-			'<p>각 헤드는 <span class="highlight"><span class="purple">어텐션 점수</span>와 <span class="green">밸류</span> 임베딩을 곱해 어텐션 출력을 만듭니다</span>. 이는 문맥을 고려한 뒤 각 토큰을 다듬은 표현입니다.</p><p>GPT-2 (small)에는 이런 출력이 12개 있으며, 이들을 이어 붙여(concatenate) 원래 크기(숫자 768개)의 벡터 하나를 만듭니다.</p>',
+			'<p>각 헤드는 <span class="highlight"><span class="purple">어텐션 점수</span>와 <span class="green">밸류</span> 임베딩을 곱해 어텐션 출력을 만듭니다</span>. 이는 문맥을 고려한 뒤 각 토큰을 다듬은 표현입니다.</p><p>KoGPT2에는 이런 출력이 12개 있으며, 이들을 이어 붙여(concatenate) 원래 크기(숫자 768개)의 벡터 하나를 만듭니다.</p>',
 		on: function () {
 			this.timeoutId = setTimeout(
 				() => {
@@ -377,7 +377,7 @@ export const textPages: TextbookPage[] = [
 	{
 		id: 'output-logit',
 		title: '출력 로짓',
-		content: `<p>모든 트랜스포머 블록을 거친 뒤, 앞선 모든 토큰의 문맥이 담긴 마지막 토큰의 출력 임베딩에 마지막 층의 학습된 가중치를 곱합니다.</p><p>그 결과 <strong>로짓(logit)</strong>이 만들어집니다. 로짓은 GPT-2 어휘의 토큰마다 하나씩, 총 50,257개의 숫자로 각 토큰이 다음에 올 가능성이 얼마나 되는지를 나타냅니다.</p>`,
+		content: `<p>모든 트랜스포머 블록을 거친 뒤, 앞선 모든 토큰의 문맥이 담긴 마지막 토큰의 출력 임베딩에 마지막 층의 학습된 가중치를 곱합니다.</p><p>그 결과 <strong>로짓(logit)</strong>이 만들어집니다. 로짓은 KoGPT2 어휘의 토큰마다 하나씩, 총 51,200개의 숫자로 각 토큰이 다음에 올 가능성이 얼마나 되는지를 나타냅니다.</p>`,
 		on: () => {
 			highlightElements(['g.path-group.softmax', '.column.final']);
 		},

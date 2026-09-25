@@ -44,13 +44,13 @@
 			사이의 의존 관계도 잘 포착할 수 있습니다.
 		</p>
 		<p>
-			GPT-2 계열 모델은 텍스트 생성 트랜스포머의 대표적인 예입니다. Transformer Explainer는 1억
-			2,400만 개의 파라미터를 가진
-			<a href="https://huggingface.co/openai-community/gpt2" title="Hugging Face" target="_blank"
-				>GPT-2</a
-			>
-			(small) 모델로 동작합니다. 최신이거나 가장 강력한 트랜스포머 모델은 아니지만, 현재 최첨단 모델에서
-			볼 수 있는 아키텍처 구성 요소와 원리를 상당 부분 공유하고 있어 기초를 이해하기 위한 출발점으로 이상적입니다.
+			GPT-2 계열 모델은 텍스트 생성 트랜스포머의 대표적인 예입니다. 이 한국어판 Transformer Explainer는
+			GPT-2 (small)와 같은 구조를 가진 한국어 모델
+			<a href="https://huggingface.co/skt/kogpt2-base-v2" title="Hugging Face" target="_blank"
+				>KoGPT2</a
+			>(SK텔레콤, 약 1억 2,500만 개의 파라미터)로 동작합니다. 최신이거나 가장 강력한 트랜스포머 모델은
+			아니지만, 현재 최첨단 모델에서 볼 수 있는 아키텍처 구성 요소와 원리를 상당 부분 공유하고 있어
+			기초를 이해하기 위한 출발점으로 이상적입니다.
 		</p>
 	</div>
 
@@ -93,7 +93,7 @@
 		<h2>임베딩</h2>
 		<p>
 			트랜스포머 모델로 텍스트를 생성하고 싶다고 해 봅시다. 예를 들어
-			<code>“Data visualization empowers users to”</code> 같은 프롬프트를 입력합니다. 이 입력은
+			<code>“데이터 시각화는 사용자가”</code> 같은 프롬프트를 입력합니다. 이 입력은
 			모델이 이해하고 처리할 수 있는 형태로 변환되어야 하는데, 바로 여기서 임베딩이 필요합니다.
 			임베딩은 텍스트를 모델이 다룰 수 있는 숫자 표현으로 바꿔 줍니다. 프롬프트를 임베딩으로 바꾸려면
 			1) 입력을 토큰화하고, 2) 토큰 임베딩을 얻고, 3) 위치 정보를 더한 뒤, 마지막으로 4) 토큰 인코딩과
@@ -111,10 +111,11 @@
 			<h3>1단계: 토큰화</h3>
 			<p>
 				토큰화(tokenization)는 입력 텍스트를 토큰이라는 더 작고 다루기 쉬운 조각으로 나누는
-				과정입니다. 토큰은 하나의 단어일 수도, 단어의 일부일 수도 있습니다. <code>"Data"</code>와
-				<code>"visualization"</code>은 각각 하나의 고유한 토큰에 대응하지만,
-				<code>"empowers"</code>는 두 개의 토큰으로 나뉩니다. 전체 토큰 어휘(vocabulary)는 모델을
-				학습하기 전에 정해지며, GPT-2의 어휘에는 <code>50,257</code>개의 고유한 토큰이 있습니다. 이제
+				과정입니다. 토큰은 하나의 단어일 수도, 단어의 일부일 수도 있습니다. <code>"데이터"</code>와
+				<code>"사용자가"</code>는 각각 하나의 고유한 토큰에 대응하지만,
+				<code>"시각화는"</code>은 <code>"시각"</code>과 <code>"화는"</code> 두 개의 토큰으로 나뉩니다.
+				전체 토큰 어휘(vocabulary)는 모델을 학습하기 전에 정해지며, KoGPT2의 어휘에는
+				<code>51,200</code>개의 고유한 토큰이 있습니다. 이제
 				입력 텍스트를 고유한 ID를 가진 토큰으로 나눴으니, 임베딩에서 각 토큰의 벡터 표현을 가져올 수
 				있습니다.
 			</p>
@@ -122,8 +123,8 @@
 		<div class="article-subsection" id="article-token-embedding">
 			<h3>2단계: 토큰 임베딩</h3>
 			<p>
-				GPT-2 (small)는 어휘의 각 토큰을 768차원 벡터로 표현합니다(벡터의 차원은 모델마다
-				다릅니다). 이 임베딩 벡터들은 <code>(50,257, 768)</code> 크기의 행렬에 저장되며, 파라미터가
+				KoGPT2는 어휘의 각 토큰을 768차원 벡터로 표현합니다(벡터의 차원은 모델마다
+				다릅니다). 이 임베딩 벡터들은 <code>(51,200, 768)</code> 크기의 행렬에 저장되며, 파라미터가
 				약 3,900만 개에 달합니다! 이 거대한 행렬 덕분에 모델은 각 토큰에 의미를 부여할 수 있습니다.
 				언어에서 쓰임새나 의미가 비슷한 토큰은 이 고차원 공간에서 서로 가까이, 다른 토큰은 멀리
 				배치됩니다.
@@ -195,7 +196,7 @@
 			퍼셉트론(MLP) 층으로 구성됩니다. 대부분의 모델은 이런 블록을 여러 개 차례로 쌓아 올린 구조입니다.
 			토큰 표현은 첫 번째 블록부터 마지막 블록까지 층을 거치며 발전하고, 이를 통해 모델은 각 토큰을
 			점점 더 정교하게 이해하게 됩니다. 이러한 층층이 쌓인 구조가 입력에 대한 고차원적인 표현을
-			만들어 냅니다. 우리가 살펴보는 GPT-2 (small) 모델은 이런 블록 <code>12</code>개로 이루어져
+			만들어 냅니다. 우리가 살펴보는 KoGPT2 모델은 이런 블록 <code>12</code>개로 이루어져
 			있습니다.
 		</p>
 	</div>
@@ -263,7 +264,7 @@
 			<p>
 				<span class="q-color">쿼리</span>, <span class="k-color">키</span>,
 				<span class="v-color">밸류</span>
-				벡터는 여러 개의 헤드로 나뉩니다. GPT-2 (small)의 경우 <code>12</code>개의 헤드로 나뉩니다.
+				벡터는 여러 개의 헤드로 나뉩니다. KoGPT2의 경우 <code>12</code>개의 헤드로 나뉩니다.
 				각 헤드는 임베딩의 일부분을 독립적으로 처리하며, 서로 다른 문법적·의미적 관계를 포착합니다.
 				이런 설계 덕분에 다양한 언어적 특징을 병렬로 학습할 수 있어 모델의 표현력이 높아집니다.
 			</p>
@@ -310,7 +311,7 @@
 			<p>
 				모델은 마스크드 셀프 어텐션 점수에
 				<span class="v-color">밸류</span> 행렬을 곱해 셀프 어텐션 메커니즘의
-				<span class="purple-color">최종 출력</span>을 얻습니다. GPT-2에는 <code>12</code>개의 셀프
+				<span class="purple-color">최종 출력</span>을 얻습니다. KoGPT2에는 <code>12</code>개의 셀프
 				어텐션 헤드가 있으며, 각 헤드는 토큰 사이의 서로 다른 관계를 포착합니다. 이 헤드들의 출력은
 				하나로 이어 붙여진(concatenate) 뒤 선형 투영(linear projection)을 거칩니다.
 			</p>
@@ -355,7 +356,7 @@
 		<h2>출력 확률</h2>
 		<p>
 			입력이 모든 트랜스포머 블록을 거치고 나면, 그 출력은 토큰 예측을 위해 마지막 선형 층을
-			통과합니다. 이 층은 최종 표현을 <code>50,257</code>차원 공간으로 투영하는데, 여기서 어휘의 모든
+			통과합니다. 이 층은 최종 표현을 <code>51,200</code>차원 공간으로 투영하는데, 여기서 어휘의 모든
 			토큰은 <code>로짓(logit)</code>이라는 값을 하나씩 갖게 됩니다. 어떤 토큰이든 다음 단어가 될 수
 			있으므로, 이 과정을 통해 각 토큰이 다음 단어가 될 가능성에 따라 순위를 매길 수 있습니다. 그런
 			다음 소프트맥스 함수를 적용해 로짓을 합이 1인 확률 분포로 바꿉니다. 이렇게 하면 각 토큰의
@@ -503,12 +504,15 @@
 	<div class="article-section" data-click="article-implementation">
 		<h2>Transformer Explainer는 어떻게 구현되었나요?</h2>
 		<p>
-			Transformer Explainer는 브라우저에서 직접 실행되는 GPT-2 (small) 모델을 사용합니다. 이 모델은
+			Transformer Explainer는 브라우저에서 직접 실행되는 KoGPT2 모델을 사용합니다. KoGPT2의 가중치를
 			Andrej Karpathy의
 			<a href="https://github.com/karpathy/nanoGPT" title="Github" target="_blank">nanoGPT 프로젝트</a
-			>에 있는 GPT의 PyTorch 구현을 바탕으로 하며, 브라우저에서 원활하게 실행되도록
+			>에 있는 GPT의 PyTorch 구현에 불러온 뒤, 브라우저에서 원활하게 실행되도록
 			<a href="https://onnxruntime.ai/" title="ONNX" target="_blank">ONNX Runtime</a>
-			형식으로 변환되었습니다. 인터페이스는 JavaScript로 만들어졌으며, 프런트엔드 프레임워크로
+			형식으로 변환했습니다. KoGPT2는 SK텔레콤이 공개한
+			<a href="https://huggingface.co/skt/kogpt2-base-v2" title="Hugging Face" target="_blank"
+				>skt/kogpt2-base-v2</a
+			>이며 CC BY-NC-SA 4.0 라이선스(비영리 목적에 한해 사용 가능)를 따릅니다. 인터페이스는 JavaScript로 만들어졌으며, 프런트엔드 프레임워크로
 			<a href="https://kit.svelte.dev/" title="Svelte" target="_blank">Svelte</a>를, 동적 시각화에는
 			<a href="https://d3js.org/" title="D3" target="_blank">D3.js</a>를 사용했습니다. 수치는 사용자
 			입력에 따라 실시간으로 갱신됩니다.

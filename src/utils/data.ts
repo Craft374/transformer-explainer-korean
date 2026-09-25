@@ -113,9 +113,13 @@ export const adjustTemperature = async ({
 	// setPredictedTokenForAnimation(probabilities, sampled, sampling);
 };
 
+// KoGPT2 marks a word start with '▁' and decode([id]) drops it, so read the raw vocab entry instead
+const tokenText = (tokenizer: PreTrainedTokenizer, id: number): string =>
+	tokenizer.model.vocab[id].replaceAll('▁', ' ');
+
 export const getTokenization = async (tokenizer: PreTrainedTokenizer, input: string) => {
 	const token_ids = tokenizer.encode(input);
-	const input_tokens = token_ids.map((id) => tokenizer.decode([id])).flat();
+	const input_tokens = token_ids.map((id) => tokenText(tokenizer, id));
 
 	return {
 		token_ids,
@@ -220,7 +224,7 @@ function topKSampling(
 	const output = filteredLogits.map((item, i) => ({
 		...item,
 		rank: i,
-		token: formatTokenForDisplay(tokenizer.decode([item.tokenId])),
+		token: formatTokenForDisplay(tokenText(tokenizer, item.tokenId)),
 		expLogit: expLogits[i],
 		probability: probabilities[i]
 	}));
@@ -277,7 +281,7 @@ function topPSampling(
 	const output = scaledLogits.map((item, i) => ({
 		...item,
 		rank: i,
-		token: formatTokenForDisplay(tokenizer.decode([item.tokenId])),
+		token: formatTokenForDisplay(tokenText(tokenizer, item.tokenId)),
 		expLogit: expLogits[i],
 		probability: newProbabilities[i] || 0,
 		topPProbability: probabilities[i], //original

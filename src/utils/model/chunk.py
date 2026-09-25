@@ -1,12 +1,12 @@
 import os
 
 # modelname="gpt2"
-modelname="gpt2"
+modelname="kogpt2"
 
 # file_path = "src/utils/model/params_output/"+modelname+'-quant.onnx'
 # chunk_path='static/'+modelname+'-quant.onnx'
 file_path = "src/utils/model/params_output/"+modelname+'.onnx'
-chunk_path='static/model-v2/'+modelname+'.onnx'
+chunk_path='static/model-ko/'+modelname+'.onnx'
 
 
 def split_file(file_path, chunk_size):

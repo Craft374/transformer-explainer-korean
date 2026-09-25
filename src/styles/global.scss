@@ -14,6 +14,8 @@ button {
 }
 :root {
 	font-size: 17px;
+	// Korean wraps between any two syllables by default, which tears narrow labels like "출력" apart
+	word-break: keep-all;
 }
 
 @media (min-width: 2560px) {

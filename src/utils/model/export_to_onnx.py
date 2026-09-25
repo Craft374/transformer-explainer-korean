@@ -4,7 +4,8 @@ import os
 # from onnxruntime.transformers import optimizer, float16
 # import onnx
 
-modelname="gpt2"
+modelname="skt/kogpt2-base-v2"  # KoGPT2 (HuggingFace)
+onnxname="kogpt2"
 
 def create_folder_if_not_exists(folder_path):
     if not os.path.exists(folder_path):
@@ -110,11 +111,11 @@ wrapped_model = wrapper(model)
 # optimized_model.save_model_to_file("gpt2_fp16.onnx")
 
 # create dummy input
-dummy_input = torch.tensor([[6601, 32704, 795, 30132, 2985, 284]])
+dummy_input = torch.tensor([[16071, 13494, 11118, 26463]])  # 데이터 시각화는 사용자가
 # dummy_input = torch.randint(0, 50257, (1, 1), dtype=torch.long)
 
 # export model to ONNX
-onnx_model_path = "src/utils/model/params_output/"+ modelname +".onnx"
+onnx_model_path = "src/utils/model/params_output/"+ onnxname +".onnx"
 
 # generate output names dynamically
 output_names = [
@@ -130,6 +131,7 @@ torch.onnx.export(
     dummy_input,
     # "src/utils/model/params_output/model.onnx",
     onnx_model_path,
+    dynamo=False,  # torch>=2.9 defaults to the dynamo exporter; this script targets the legacy one
     export_params=True,
     opset_version=11,
     do_constant_folding=True,

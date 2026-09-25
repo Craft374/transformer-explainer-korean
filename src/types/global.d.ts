@@ -17,6 +17,7 @@ type ModelMetaData = {
 	layer_num: number;
 	attention_head_num: number;
 	dimension: number;
+	vocab_size?: number;
 	chunkTotal?: number;
 };
 

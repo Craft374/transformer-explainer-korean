@@ -28,11 +28,11 @@ export const isFetchingModel = writable(true);
 export const isLoaded = writable(false);
 
 export const inputTextExample = [
-	'Data visualization empowers users to',
-	'Artificial Intelligence is transforming the',
-	'As the spaceship was approaching the',
-	'On the deserted planet they discovered a',
-	'IEEE VIS conference highlights the'
+	'데이터 시각화는 사용자가',
+	'인공지능은 우리의 삶을',
+	'우주선이 낯선 행성에',
+	'아무도 없는 행성에서 그들은',
+	'이 학회는 최신 연구를'
 ];
 
 const initialExIdx = 0;
@@ -47,7 +47,7 @@ export const tokens = writable<string[]>(ex0?.tokens);
 export const tokenIds = writable<number[]>(ex0?.tokenIds);
 
 export const modelMetaMap: Record<string, ModelMetaData> = {
-	gpt2: { layer_num: 12, attention_head_num: 12, dimension: 768, chunkTotal: 63 },
+	gpt2: { layer_num: 12, attention_head_num: 12, dimension: 768, vocab_size: 51200, chunkTotal: 64 }, // KoGPT2 (GPT-2 architecture)
 	'gpt2-medium': { layer_num: 24, attention_head_num: 16, dimension: 1024 },
 	'gpt2-large': { layer_num: 36, attention_head_num: 20, dimension: 1280 }
 };

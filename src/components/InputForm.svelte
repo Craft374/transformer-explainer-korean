@@ -57,10 +57,15 @@
 	};
 
 	const handleSubmit = (e) => {
+		// only a prediction the user could already see may be accepted; finishing the running
+		// animation below publishes the previous run's prediction, which must not join a new sentence
+		const acceptedToken = predictedTokenTemp;
+
 		// Complete any running animation before starting new generation
 		completeCurrentAnimation();
 
 		setTimeout(() => {
+			predictedTokenTemp = acceptedToken;
 			onFocusInput();
 			textPages.find((page) => page.id === 'how-transformers-work')?.complete();
 
@@ -87,6 +92,7 @@
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
+			if (e.isComposing) return; // Enter that only commits a Hangul syllable must not submit
 			if (disabled || exceedLimit) return;
 			handleSubmit(e);
 			return;
@@ -180,7 +186,7 @@
 						bind:this={inputRef}
 						contenteditable={!disabled}
 						class="text-box"
-						placeholder="직접 입력해 보세요 (영어만 지원)"
+						placeholder="직접 입력해 보세요"
 						on:focus={onFocusInput}
 						on:input={onInput}
 						on:keydown={handleKeyDown}
@@ -212,11 +218,11 @@
 				{/if}
 				{#if $isMobile}
 					<span class="helper-text"
-						>예시를 사용해 보세요. GPT-2 프롬프트를 직접 입력하려면 데스크톱 컴퓨터를 이용해 주세요.</span
+						>예시를 사용해 보세요. KoGPT2 프롬프트를 직접 입력하려면 데스크톱 컴퓨터를 이용해 주세요.</span
 					>
 				{:else if $isLoaded && $isFetchingModel}
 					<span class="helper-text"
-						>GPT-2 모델(600MB)을 다운로드하는 동안 예시를 사용해 보세요</span
+						>KoGPT2 모델(약 660MB)을 다운로드하는 동안 예시를 사용해 보세요</span
 					>
 				{:else if exceedLimit}
 					<span class="helper-text">최대 {wordLimit}단어까지 입력할 수 있습니다.</span>

@@ -19,6 +19,7 @@
 		isOnBlockTransition,
 		blockIdx,
 		isTextbookOpen,
+		modelMeta,
 		userId
 	} from '~/store';
 	import { PreTrainedTokenizer } from '@xenova/transformers';
@@ -38,7 +39,7 @@
 	import { fetchAndMergeChunks } from '~/utils/fetchChunks';
 	import WeightPopovers from '~/components/WeightPopovers.svelte';
 	import { fade } from 'svelte/transition';
-	import { AutoTokenizer } from '@xenova/transformers';
+	import { AutoTokenizer, env } from '@xenova/transformers';
 	import { ex0, ex1, ex2, ex3, ex4 } from '~/constants/examples';
 	import BlockTransition from '~/components/BlockTransition.svelte';
 	import QKV from '~/components/QKV.svelte';
@@ -47,15 +48,20 @@
 	ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.23.0/dist/';
 	ort.env.logLevel = 'error';
 
+	// the tokenizer ships with the site (static/tokenizer/kogpt2); nothing is fetched from the HF Hub
+	env.allowLocalModels = true;
+	env.allowRemoteModels = false;
+	env.localModelPath = `${base}/tokenizer/`;
+
 	let active = false;
 	let appStartTime = Date.now();
 
 	// fetch model
 	onMount(async () => {
-		const gpt2Tokenizer = await AutoTokenizer.from_pretrained('Xenova/gpt2');
+		const tokenizer = await AutoTokenizer.from_pretrained('kogpt2');
 		active = true;
 
-		const unsubscribe = subscribeInputs(gpt2Tokenizer);
+		const unsubscribe = subscribeInputs(tokenizer);
 
 		if (!$isMobile) {
 			await fetchModel();
@@ -66,10 +72,9 @@
 
 	// Fetch model onnx
 	const fetchModel = async () => {
-		const chunkNum = 63; //TODO: move to model meta
-		const chunkUrls = Array(chunkNum)
+		const chunkUrls = Array($modelMeta.chunkTotal)
 			.fill(0)
-			.map((d, i) => `${base}/model-v2/gpt2.onnx.part${i}`);
+			.map((d, i) => `${base}/model-ko/kogpt2.onnx.part${i}`);
 
 		// Fetch from cache
 		const { hasCache, mergedArray } = await fetchAndMergeChunks(chunkUrls);
@@ -101,7 +106,7 @@
 	// Subscribe inputs
 	const cachedDataMap = [ex0, ex1, ex2, ex3, ex4];
 	const subscribeInputs = (tokenizer: PreTrainedTokenizer) => {
-		const runModelOrCache = () => {
+		const runModelOrCache = (text: string) => {
 			if ($isFetchingModel || !$modelSession) {
 				const cachedData = cachedDataMap[$selectedExampleIdx];
 
@@ -116,14 +121,15 @@
 			// run model when input has changed
 			runModel({
 				tokenizer,
-				input: $inputText.trim(),
+				input: text.trim(),
 				temperature: $temperature,
 				sampling: $sampling
 			});
 		};
 
+		// use the emitted value: `$inputText` is only refreshed after this subscriber runs, so it is one input behind
 		const unsubscribeInputText = inputText.subscribe((value) => {
-			runModelOrCache();
+			runModelOrCache(value);
 		});
 
 		let initialTemperature = true; // prevent initial redundant rendering
