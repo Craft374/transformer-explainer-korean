@@ -48,7 +48,7 @@ python src/utils/model/export_to_onnx.py   # skt/kogpt2-base-v2 -> params_output
 python src/utils/model/chunk.py            # 10MB 조각으로 나눠 static/model-ko/ 에 저장
 ```
 
-토크나이저는 `static/tokenizer/kogpt2/`에 함께 들어 있어, 실행 중에 외부(Hugging Face)에서 내려받지 않습니다.
+토크나이저는 `static/tokenizer/kogpt2/`에 함께 들어 있어, 실행 중에 외부(Hugging Face)에서 내려받지 않습니다. 토크나이저가 제대로 동작하는지는 `node src/utils/model/check_tokenizer.mjs`로 확인할 수 있습니다.
 
 ## 만든 사람들
 

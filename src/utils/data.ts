@@ -318,7 +318,7 @@ function formatTokenForDisplay(token: string): string {
 // A bare-space token cannot extend a sentence, so it is never suggested (it stays in the list).
 function randomChoice(items: Probabilities): Probability {
 	const candidates = items.filter((d) => (d.raw ?? d.token).trim() !== '');
-	const pool = candidates.length ? candidates : items;
+	const pool = candidates.some((d) => d.probability > 0) ? candidates : items;
 	const total = pool.reduce((sum, d) => sum + d.probability, 0);
 
 	// Generate a random number between 0 and the pool's total probability
